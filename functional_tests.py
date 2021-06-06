@@ -42,7 +42,8 @@ class NewVisitorTest(unittest.TestCase):
 
         table = self.driver.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(any(row.text == '1: Купить павлиньи перья' for row in rows))
+        self.assertTrue(any(row.text == '1: Купить павлиньи перья' for row in rows),
+        "Новый элемент списка не появился в таблице")
 
         # Текствое поле по-прежнему приглашает ее добавить еще один элемент.
         # Она вводит "Сделать мушку из павлиньих перьев"
