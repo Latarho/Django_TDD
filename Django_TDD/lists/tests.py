@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Item
+from lists.models import Item
 
 
 class ItemModelTest(TestCase):
@@ -50,3 +50,8 @@ class HomePageTest(TestCase):
 
         self.assertIn('A new list item', response.content.decode())
         self.assertTemplateUsed(response, 'home.html')
+
+    def test_only_saves_items_when_necessary(self):
+        """Тест: Сохраняет элементы, только когда нужно"""
+        self.client.get('/')
+        self.assertEqual(Item.objects.count(), 0)
